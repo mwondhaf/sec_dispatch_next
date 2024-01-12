@@ -217,6 +217,22 @@ export function CreateUserDialog({
                 </FormItem>
               )}
             />
+            <div className="col-span-2">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Account Password</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormDescription />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <SubmitButton label="Add" pendingLabel="Adding..." />
           </form>
         </Form>

@@ -42,7 +42,7 @@ export const {
     signOut: "/auth/signout",
     error: "/auth/login", // Error code passed in query string as ?error=
   },
-  trustHost: true,
+  // trustHost: true,
 
   session: {
     strategy: "jwt",
