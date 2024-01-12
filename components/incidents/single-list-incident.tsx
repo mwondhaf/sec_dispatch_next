@@ -45,10 +45,8 @@ const SingleListIncident: React.FC<SingleListIncidentProps> = ({
               </p>
             </div>
           </div>
-
-          {/* <h3 className="text-xl">{incident.title}</h3> */}
           <p className="text-sm font-semibold">{incident.category.name}</p>
-          <p className="line-clamp-2 text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground md:line-clamp-2">
             {incident.description}
           </p>
         </div>

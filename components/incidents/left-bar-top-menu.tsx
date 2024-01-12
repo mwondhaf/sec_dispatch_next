@@ -56,13 +56,13 @@ const LeftBarTopMenu = () => {
   };
 
   return (
-    <div className="sticky top-0 flex justify-between border-b bg-white px-5 py-2">
-      <div className="flex items-center gap-5">
+    <div className="sticky top-0 flex justify-between gap-2 border-b bg-white px-3 py-2 md:gap-0">
+      <div className="flex items-center md:gap-5">
         <Select
           onValueChange={(value) => handleFilterBySeverity(value)}
           value={severity ? severity : "any"}
         >
-          <SelectTrigger className="w-[100px] border-0 text-xs font-bold text-primary">
+          <SelectTrigger className="w-[70px] border-0 text-xs font-bold text-primary md:w-[100px]">
             <SelectValue placeholder="Severity" />
           </SelectTrigger>
           <SelectContent>

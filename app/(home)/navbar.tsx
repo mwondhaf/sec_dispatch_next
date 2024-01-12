@@ -34,7 +34,7 @@ const MainNav = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 flex min-h-[10vh] border-b bg-white">
+    <nav className="top-0 z-50 flex min-h-[10vh] border-b bg-white md:sticky">
       <div className="container flex  items-center justify-between  bg-white px-6">
         <div className="">
           <Link className="font-bold" href={"/"}>
