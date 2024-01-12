@@ -85,7 +85,7 @@ const LineGraph: React.FC<LineGraphProps> = (props) => {
   };
 
   return (
-    <div className="">
+    <div className="hidden md:flex">
       <Card>
         <div className="flex items-center justify-between">
           <TremorTitle>Incidents Faring</TremorTitle>

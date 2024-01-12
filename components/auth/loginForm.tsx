@@ -96,7 +96,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

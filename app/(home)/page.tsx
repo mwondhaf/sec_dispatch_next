@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div className="container h-screen">
       <IntroDetails />
-      <div className="grid grid-cols-5 gap-6">
+      <div className="flex grid-cols-5 flex-col-reverse gap-6 md:grid">
         <div className="col-span-3">
           <LineGraph />
           <Card className="mt-6">

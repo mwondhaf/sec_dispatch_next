@@ -4,24 +4,22 @@ import { Button } from "@/components/ui/button";
 import clsx from "clsx";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
-import { logoutAction } from "../actions/actions";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchData } from "../actions/fetch-helper";
 import { UserProfile } from "@/typings";
 import { signOut } from "next-auth/react";
 
-const menu = [
+export const menu = [
   { name: "Analytics", uri: "/" },
-  { name: "Incidents", uri: "/incidents" },
+  { name: "Occurrences", uri: "/incidents" },
   { name: "Settings", uri: "/settings" },
   { name: "Search", uri: "/filter" },
 ];
 
 const MainNav = () => {
   const pathname = usePathname();
-  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { data: profiles, error } = useQuery({
@@ -33,15 +31,17 @@ const MainNav = () => {
   const handleLogout = async () => {
     queryClient.clear();
     signOut();
-    // await logoutAction();
-    // router.replace("/login");
   };
 
   return (
     <nav className="sticky top-0 z-50 flex min-h-[10vh] border-b bg-white">
       <div className="container flex  items-center justify-between  bg-white px-6">
-        <div className="">Logo</div>
         <div className="">
+          <Link className="font-bold" href={"/"}>
+            logo
+          </Link>
+        </div>
+        <div className="hidden md:flex">
           {menu.map((menu, index) => (
             <Button key={index} asChild variant={"ghost"}>
               <Link
