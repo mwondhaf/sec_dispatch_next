@@ -41,7 +41,7 @@ export function EditReporterDepartmentDialog({
 
   useEffect(() => {
     form.setValue("name", department.name);
-  }, [department]);
+  }, [department, form]);
 
   const onSubmit: SubmitHandler<DepartmentInput> = async (data) => {
     const result = await updateDepartment(department.id.toString(), data);

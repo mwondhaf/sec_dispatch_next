@@ -18,9 +18,8 @@ export const {
         idNumber: { label: "ID", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // validate fields with schema
 
+      async authorize(credentials, req) {
         const validatedCredentials = loginSchema.safeParse(credentials);
         if (!validatedCredentials.success) {
           throw new Error(validatedCredentials.error.message);
@@ -43,6 +42,7 @@ export const {
     signOut: "/auth/signout",
     error: "/auth/login", // Error code passed in query string as ?error=
   },
+  trustHost: true,
 
   session: {
     strategy: "jwt",

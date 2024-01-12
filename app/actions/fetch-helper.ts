@@ -1,7 +1,7 @@
 "use server";
 import { auth } from "@/auth";
 
-let apiBaseUrl = process.env.BACKEND_URL || "http://localhost:3003";
+let apiBaseUrl = process.env.BACKEND_URL;
 
 export const fetchData = async (endpoint: string) => {
   const session = await auth();

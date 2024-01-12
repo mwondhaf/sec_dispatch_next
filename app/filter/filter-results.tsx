@@ -7,7 +7,7 @@ import { filterSchema } from "@/lib/schemas/filter-schema";
 import { Button } from "@/components/ui/button";
 import moment from "moment";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import Dispatch from "./dispatch/page";
+import Dispatch from "./dispatch/mainpage";
 
 interface FilterResultsProps {
   params?: { [key: string]: string | string[] | undefined };
@@ -43,9 +43,8 @@ const FilterResults: React.FC<FilterResultsProps> = () => {
     reporter_name,
   } as any;
 
+  // @ts-ignore
   const { incidents } = useIncidentsQuery(parameters);
-
-  // use font that supports Arabic
 
   return (
     <div className="p-5">

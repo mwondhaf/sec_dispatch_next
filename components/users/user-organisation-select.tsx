@@ -9,13 +9,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Organisation } from "@/typings";
+import { Company } from "@/typings";
 
 export function SelectOrganisation({
   orgs,
   handleSelected,
 }: {
-  orgs: Organisation[];
+  orgs: Company[];
   handleSelected: (selected: any) => void;
 }) {
   return (
@@ -35,10 +35,6 @@ export function SelectOrganisation({
               {org.name}
             </SelectItem>
           ))}
-          {/* <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem> */}
         </SelectGroup>
       </SelectContent>
     </Select>

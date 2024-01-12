@@ -79,6 +79,7 @@ export function DateRangePicker() {
                   <Calendar
                     id="range"
                     selected={field.value}
+                    // @ts-ignore
                     onSelect={(date) => {
                       field.onChange(date);
                     }}

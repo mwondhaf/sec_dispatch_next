@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { FC } from "react";
 import {
   PDFViewer,
   Document,
@@ -11,6 +12,10 @@ import {
 import { Incident } from "@/typings";
 import moment from "moment";
 import { countries } from "@/lib/countries";
+
+interface DispatchProps {
+  incidents: Incident[];
+}
 
 Font.register({
   family: "Roboto",
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dispatch = ({ incidents }: { incidents: Incident[] }) => {
+const Dispatch: FC<DispatchProps> = ({ incidents }) => {
   const headers = [
     "Time",
     "Location",

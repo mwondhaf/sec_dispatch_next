@@ -13,6 +13,7 @@ const personSchemaNoNameAndEmail = personSchema.omit({
   idNumber: true,
   isActive: true,
   role: true,
+  password: true,
 });
 type CreateUserInput = z.infer<typeof personSchemaNoNameAndEmail>;
 
