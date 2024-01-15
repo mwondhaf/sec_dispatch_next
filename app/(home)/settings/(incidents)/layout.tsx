@@ -6,7 +6,7 @@ const OccurrenceLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pr-5">
       <div className="grid grid-cols-4 gap-5">
-        <div className="min-h-[80vh] space-y-5 border-r px-2 py-5">
+        <div className="min-h-[80vh] space-y-5 border-r px-2">
           <Link href="/settings/incident-types" className="">
             <div className="flex items-center justify-between py-5">
               <div className="text-sm text-gray-500">Incident Types</div>

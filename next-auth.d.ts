@@ -6,7 +6,7 @@ declare module "next-auth" {
     user: {
       name: string;
       email: string;
-      accessToken: string;
+      accessToken: string | JwtPayload;
       employeeType: string;
       companyId?: string;
       UserProfile: UserProfile[];

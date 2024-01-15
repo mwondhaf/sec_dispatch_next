@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="border-r">
         <LeftSideBar />
       </div>
-      <div className="w-3/4 p-4">{children}</div>
+      <div className="w-3/4 px-4">{children}</div>
     </div>
   );
 };
