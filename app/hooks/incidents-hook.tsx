@@ -1,17 +1,12 @@
 "use client ";
 
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createIncident, updateIncident } from "../actions/incident.actions";
 import { incidentSchema } from "@/lib/schemas/create-incident-schema";
 import { z } from "zod";
 import { fetchData } from "../actions/fetch-helper";
 import { Incident } from "@/typings";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getAllIncidentTypes } from "../actions/settings/incident-type-actions";
 import { getAllIncidentCategories } from "../actions/settings/incident-category-actions";
 import { getAllDepartments } from "../actions/settings/department-actions";
@@ -52,27 +47,6 @@ export function useIncidentsQuery(
 
   return { incidents, error, isLoading };
 }
-
-// fetch single incident
-// export const FetchIncidentQuery = (referenceNumber: string) => {
-//   const {
-//     data: incident,
-//     error,
-//     isLoading,
-//   } = useQuery({
-//     queryKey: ["incident", referenceNumber],
-//     queryFn: async (referenceNumber) => {
-//       const data = (await fetchData(
-//         `incidents/${referenceNumber}`,
-//       )) as Incident;
-
-//       console.log("data", data);
-
-//       return data;
-//     },
-//   });
-//   return { incident, error, isLoading };
-// };
 
 export function useCreateIncidentMutation() {
   const queryClient = useQueryClient();
