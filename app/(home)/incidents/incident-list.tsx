@@ -1,21 +1,12 @@
 "use client";
-import {
-  useCategoriesQuery,
-  useDepartmentsQuery,
-  useIncidentsQuery,
-} from "@/app/hooks/incidents-hook";
+import { useIncidentsQuery } from "@/app/hooks/incidents-hook";
 import SingleListIncident from "@/components/incidents/single-list-incident";
-import { filterSchema } from "@/lib/schemas/filter-schema";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import { z } from "zod";
 
 const IncidentsList = () => {
   const params = useSearchParams();
-  // const parameters = {
-  //   severity: params.get("severity"),
-  //   search: params.get("search"),
-  // };
 
   const search = params.get("search");
   const cat_type_id = params.get("cat_type_id");

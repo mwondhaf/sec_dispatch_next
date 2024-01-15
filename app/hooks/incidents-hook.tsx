@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { getAllIncidentTypes } from "../actions/settings/incident-type-actions";
 import { getAllIncidentCategories } from "../actions/settings/incident-category-actions";
 import { getAllDepartments } from "../actions/settings/department-actions";
+import { toast } from "@/components/ui/use-toast";
 
 export function useIncidentsQuery(
   parameters?: {
@@ -59,6 +60,12 @@ export function useCreateIncidentMutation() {
     onSuccess: (data) => {
       router.replace(`/incidents/${data.referenceNumber}`);
       queryClient.invalidateQueries({ queryKey: ["incidents"] });
+
+      // toaster
+      toast({
+        title: "Incident Created",
+        description: "Incident created successfully",
+      });
     },
     onError: (error) => {
       console.log("error", error.message);
@@ -80,6 +87,11 @@ export function useUpdateIncidentMutation() {
       });
       queryClient.invalidateQueries({
         queryKey: ["incident"],
+      });
+      // toaster
+      toast({
+        title: "Incident Updated",
+        description: "Incident updated successfully",
       });
     },
     onError: (error) => {

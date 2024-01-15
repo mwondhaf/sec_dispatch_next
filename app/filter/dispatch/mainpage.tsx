@@ -46,39 +46,39 @@ const styles = StyleSheet.create({
     // display: "table",
     width: "auto",
     borderStyle: "solid",
-    borderWidth: 0.35,
+    borderWidth: 0.4,
     marginBottom: 10,
   },
   tableRow: {
     flexDirection: "row",
-    borderBottomWidth: 0.35,
+    borderBottomWidth: 0.4,
     borderStyle: "solid",
   },
   tableCell: {
     width: "7.1428%",
     borderStyle: "solid",
-    borderWidth: 0.35,
+    borderWidth: 0.4,
     padding: 5,
     justifyContent: "center",
   },
   tableCell0: {
     width: "5%",
     borderStyle: "solid",
-    borderWidth: 0.35,
+    borderWidth: 0.4,
     padding: 5,
     justifyContent: "center",
   },
   tableCell2: {
     width: "9%",
     borderStyle: "solid",
-    borderWidth: 0.35,
+    borderWidth: 0.4,
     padding: 5,
     justifyContent: "center",
   },
   tableCell4: {
     width: "25%",
     borderStyle: "solid",
-    borderWidth: 0.35,
+    borderWidth: 0.4,
     padding: 5,
     justifyContent: "center",
   },
@@ -141,8 +141,8 @@ const Dispatch: FC<DispatchProps> = ({ incidents }) => {
           <Text>{incidents[0]?.entity.name}</Text>
           <Text style={styles.subtitle}>
             Dispatch Report -
-            {moment(incidents[0]?.incidentTime).format("DD-MM-YYYY HH:mm")} to{" "}
-            {moment(incidents.pop()?.incidentTime).format("DD-MM-YYYY HH:mm")}
+            {moment(incidents[0]?.incidentTime).format("DD MMM, YYYY HH:mm")} to{" "}
+            {moment(incidents.pop()?.incidentTime).format("DD MMM, YYYY HH:mm")}
           </Text>
 
           <View style={styles.table}>
