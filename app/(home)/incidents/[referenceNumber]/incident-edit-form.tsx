@@ -147,7 +147,7 @@ function IncidentEditForm({
   }
 
   if (!incident) {
-    return <>Incident not found</>;
+    return <>Loading...</>;
   }
 
   return (

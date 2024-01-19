@@ -55,7 +55,7 @@ const Page: React.FC<PageProps> = ({ params }) => {
   }
 
   if (!incident) {
-    return <>Incident not found</>;
+    return <div className="p-4">Loading...</div>;
   }
 
   return (

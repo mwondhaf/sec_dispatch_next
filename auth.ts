@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import jwt from "jsonwebtoken";
 import { postData } from "./app/actions/fetch-helper";
 import { loginSchema } from "./lib/schemas/auth-schema";
-import { z } from "zod";
 
 export const {
   handlers: { GET, POST },
