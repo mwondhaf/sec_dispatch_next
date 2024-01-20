@@ -43,16 +43,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { CreatePersonInvolvedDialog } from "@/components/incidents/create-person-involved-dialog";
 import { PeopleInvolvedAccord } from "./people-involved-accord";
 import { useUpdateIncidentMutation } from "@/app/hooks/incidents-hook";
-import { Department, IncidentCategory } from "@/typings";
+import { Department, Incident, IncidentCategory } from "@/typings";
 
 const severityOptions = ["Low", "Medium", "High"];
 
 function IncidentEditForm({
-  referenceNumber,
+  incident,
   departments,
   categories: incident_categories,
 }: {
-  referenceNumber: string;
+  incident: Incident;
   departments: Department[];
   categories: IncidentCategory[];
 }) {
@@ -64,54 +64,26 @@ function IncidentEditForm({
     queryFn: async () => await fetchData("user-profiles/own"),
   });
 
-  const fetchIncident = async () => {
-    const incident = await getIncident(`${referenceNumber}`);
-    if (incident) {
-      form.setValue("departmentId", incident.departmentId);
-      form.setValue("incidentCategoryId", incident.incidentCategoryId);
-      form.setValue("severity", incident.severity);
-      form.setValue("description", incident.description);
-      form.setValue("location", incident.location);
-      form.setValue("entityId", incident.entityId);
-
-      form.setValue("occurrenceDate", moment(incident.incidentTime).toDate());
-      form.setValue("time", moment(incident.incidentTime).format("HH:mm"));
-
-      form.setValue(
-        "closureDate",
-        moment(incident.incidentClosedTime).toDate(),
-      );
-      form.setValue(
-        "closureTime",
-        moment(incident.incidentClosedTime).format("HH:mm"),
-      );
-
-      form.setValue("reporterName", incident.reporterName);
-      form.setValue("investigation", incident.investigation);
-      form.setValue("referenceNumber", incident.referenceNumber);
-
-      form.setValue("compilerEmail", incident.compilerEmail);
-      form.setValue("editorEmail", incident.editorEmail);
-    }
-    return incident;
-  };
-
-  const {
-    data: incident,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ["incident", referenceNumber],
-    queryFn: async () => await fetchIncident(),
-    enabled:
-      !!referenceNumber && !!departments && !!incident_categories && !!profiles,
-  });
-
   const form = useForm<z.infer<typeof incidentSchema>>({
     resolver: zodResolver(incidentSchema),
+    defaultValues: {
+      departmentId: incident.departmentId,
+      incidentCategoryId: incident.incidentCategoryId,
+      severity: incident.severity,
+      description: incident.description,
+      location: incident.location,
+      entityId: incident.entityId,
+      occurrenceDate: moment(incident.incidentTime).toDate(),
+      time: moment(incident.incidentTime).format("HH:mm"),
+      closureDate: moment(incident.incidentClosedTime).toDate(),
+      closureTime: moment(incident.incidentClosedTime).format("HH:mm"),
+      reporterName: incident.reporterName,
+      investigation: incident.investigation,
+      referenceNumber: incident.referenceNumber,
+      compilerEmail: incident.compilerEmail,
+      editorEmail: incident.editorEmail,
+    },
   });
-
-  //  form errors
 
   async function onSubmit(data: z.infer<typeof incidentSchema>) {
     const date = moment(data.occurrenceDate).format("YYYY-MM-DD");
@@ -137,18 +109,6 @@ function IncidentEditForm({
       queryKey: ["incident", incident?.referenceNumber],
     });
   };
-
-  if (error) {
-    return <>An error has occurred: {error.message}</>;
-  }
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  if (!incident) {
-    return <>Loading...</>;
-  }
 
   return (
     <div className="py-1">

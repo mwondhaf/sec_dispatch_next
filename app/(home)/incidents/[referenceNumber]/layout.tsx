@@ -3,7 +3,7 @@ import { sendEmail } from "@/app/actions/email.actions";
 import { getIncident } from "@/app/actions/incident.actions";
 import { DispatchEmailDialog } from "@/components/emails/send-dialog";
 import { Button } from "@/components/ui/button";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Languages, Mail, Pencil, Printer, UserPlus2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -62,18 +62,6 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
           <DispatchEmailDialog
             {...{ incident, isOpened, setIsOpened, handleOpenEmailDialog }}
           />
-          {/* <Button
-            size={"icon"}
-            variant={"ghost"}
-            onClick={
-              async () => await sendEmail(incident)
-              // router.push(
-              //   `/incidents/${params.referenceNumber}?${existing_params}`,
-              // )
-            }
-          >
-            <Mail className="h-4 w-4" />
-          </Button> */}
           <Button
             size={"icon"}
             variant={"ghost"}
