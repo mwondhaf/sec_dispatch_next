@@ -60,9 +60,9 @@ const Page: React.FC<PageProps> = ({ params }) => {
 
   return (
     <>
-      <div className="space-y-4">
+      <div className="space-y-8">
         <div className="border-b">
-          <div className="flex items-center justify-between gap-4 p-4">
+          <div className="flex items-center justify-between gap-4 px-8 py-4">
             <div className="text-sm text-muted-foreground">
               <p className="font-semibold text-primary/80">
                 {incident.category?.name}
@@ -118,14 +118,14 @@ const Page: React.FC<PageProps> = ({ params }) => {
             </div>
           </div>
         </div>
-        <div className="px-4">
+        <div className="px-8">
           <h6 className="text-sm font-semibold">Description</h6>
 
           <div className="flex-1 whitespace-pre-wrap text-sm text-muted-foreground">
             {incident.description}
           </div>
         </div>
-        <div className="px-4">
+        <div className="px-8">
           <h6 className="text-sm font-semibold">Action Taken</h6>
           <p className="text-justify text-sm text-muted-foreground">
             {incident.investigation}
