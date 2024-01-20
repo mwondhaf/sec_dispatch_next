@@ -1,10 +1,7 @@
 "use client";
-import { sendEmail } from "@/app/actions/email.actions";
-import { getIncident } from "@/app/actions/incident.actions";
 import { DispatchEmailDialog } from "@/components/emails/send-dialog";
 import { Button } from "@/components/ui/button";
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Languages, Mail, Pencil, Printer, UserPlus2 } from "lucide-react";
+import { Languages, Pencil, Printer } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
@@ -25,13 +22,6 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
   const handleOpenEmailDialog = () => {
     setIsOpened((prev) => !prev);
   };
-
-  const { data: incident } = useQuery({
-    queryKey: ["incident", params.referenceNumber],
-    queryFn: async () => await getIncident(params.referenceNumber),
-  });
-
-  if (!params.referenceNumber || !incident) return <div>Not found</div>;
 
   return (
     <div className="">
@@ -60,7 +50,7 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
             <Printer className="h-4 w-4" />
           </Button>
           <DispatchEmailDialog
-            {...{ incident, isOpened, setIsOpened, handleOpenEmailDialog }}
+            {...{ isOpened, setIsOpened, handleOpenEmailDialog }}
           />
           <Button
             size={"icon"}

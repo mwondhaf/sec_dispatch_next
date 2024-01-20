@@ -1,13 +1,12 @@
 "use client";
 import { fetchData } from "@/app/actions/fetch-helper";
-import { getIncident } from "@/app/actions/incident.actions";
 import { getAllDepartments } from "@/app/actions/settings/department-actions";
 import { getAllIncidentCategories } from "@/app/actions/settings/incident-category-actions";
 import { countries } from "@/lib/countries";
-import { useQuery } from "@tanstack/react-query";
+import { Incident } from "@/typings";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { format } from "date-fns";
-// import moment from "moment";
 import React from "react";
 
 interface PageProps {
@@ -17,6 +16,8 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({ params }) => {
+  const queryClient = useQueryClient();
+
   const { data: incident_categories } = useQuery({
     queryKey: ["incident_categories"],
     queryFn: async () => await getAllIncidentCategories(),
@@ -27,23 +28,22 @@ const Page: React.FC<PageProps> = ({ params }) => {
     queryFn: async () => await getAllDepartments(),
   });
 
-  const { data: profiles } = useQuery({
-    queryKey: ["profiles"],
-    queryFn: async () => await fetchData("user-profiles/own"),
-  });
-
   const {
     data: incident,
     error,
     isLoading,
-  } = useQuery({
+  } = useQuery<Incident>({
     queryKey: ["incident", params.referenceNumber],
-    queryFn: async () => await getIncident(params.referenceNumber),
-    enabled:
-      !!params.referenceNumber &&
-      !!departments &&
-      !!incident_categories &&
-      !!profiles,
+    queryFn: async () => await fetchData(`incidents/${params.referenceNumber}`),
+    initialData: () => {
+      const data = queryClient.getQueryData(["incidents", ""]);
+      //  @ts-ignore
+      const incident = data?.find(
+        (d: Incident) => d.referenceNumber === params.referenceNumber,
+      );
+      return incident;
+    },
+    enabled: !!params.referenceNumber && !!departments && !!incident_categories,
   });
 
   if (error) {

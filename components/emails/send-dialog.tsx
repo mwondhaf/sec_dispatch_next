@@ -24,21 +24,38 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { toast } from "../ui/use-toast";
+import { useParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function DispatchEmailDialog({
-  incident,
   isOpened,
   handleOpenEmailDialog,
   setIsOpened,
 }: {
-  incident: Incident;
   isOpened: boolean;
   handleOpenEmailDialog: () => void;
   setIsOpened: (value: boolean) => void;
 }) {
   const [isPending, startTransition] = useTransition();
+  const [incidentData, setIncidentData] = useState<Incident | undefined>();
+  const params = useParams();
+  const queryClient = useQueryClient();
+
+  const getIncident = async () => {
+    const data = await queryClient.getQueryData<Incident[]>(["incidents", ""]);
+    const incident = data?.find(
+      (d: Incident) => d.referenceNumber === params.referenceNumber,
+    );
+    setIncidentData(incident);
+  };
+
+  useEffect(() => {
+    if (params.referenceNumber) {
+      getIncident();
+    }
+  }, [params.referenceNumber]);
 
   const formSchema = z.object({
     emails: z.string().min(5, {
@@ -65,7 +82,7 @@ export function DispatchEmailDialog({
     });
 
     startTransition(async () => {
-      await sendEmail(validatedEmails, incident);
+      await sendEmail(validatedEmails, incidentData);
       setIsOpened(false);
       toast({
         title: "Email sent",
