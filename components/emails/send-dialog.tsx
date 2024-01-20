@@ -55,6 +55,7 @@ export function DispatchEmailDialog({
     if (params.referenceNumber) {
       getIncident();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.referenceNumber]);
 
   const formSchema = z.object({
