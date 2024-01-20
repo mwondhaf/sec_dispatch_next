@@ -1,5 +1,9 @@
 "use client";
+import { sendEmail } from "@/app/actions/email.actions";
+import { getIncident } from "@/app/actions/incident.actions";
+import { DispatchEmailDialog } from "@/components/emails/send-dialog";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
 import { Languages, Mail, Pencil, Printer, UserPlus2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -13,9 +17,21 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, params }) => {
+  const [isOpened, setIsOpened] = React.useState(false);
+
   const router = useRouter();
   const existing_params = useSearchParams();
-  if (!params.referenceNumber) return <div>Not found</div>;
+
+  const handleOpenEmailDialog = () => {
+    setIsOpened((prev) => !prev);
+  };
+
+  const { data: incident } = useQuery({
+    queryKey: ["incident", params.referenceNumber],
+    queryFn: async () => await getIncident(params.referenceNumber),
+  });
+
+  if (!params.referenceNumber || !incident) return <div>Not found</div>;
 
   return (
     <div className="">
@@ -43,17 +59,21 @@ const Layout: React.FC<LayoutProps> = ({ children, params }) => {
           >
             <Printer className="h-4 w-4" />
           </Button>
-          <Button
+          <DispatchEmailDialog
+            {...{ incident, isOpened, setIsOpened, handleOpenEmailDialog }}
+          />
+          {/* <Button
             size={"icon"}
             variant={"ghost"}
-            onClick={() =>
-              router.push(
-                `/incidents/${params.referenceNumber}?${existing_params}`,
-              )
+            onClick={
+              async () => await sendEmail(incident)
+              // router.push(
+              //   `/incidents/${params.referenceNumber}?${existing_params}`,
+              // )
             }
           >
             <Mail className="h-4 w-4" />
-          </Button>
+          </Button> */}
           <Button
             size={"icon"}
             variant={"ghost"}
