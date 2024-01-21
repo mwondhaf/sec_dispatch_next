@@ -24,10 +24,11 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useTransition } from "react";
 import { toast } from "../ui/use-toast";
 import { useParams } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { fetchData } from "@/app/actions/fetch-helper";
 
 export function DispatchEmailDialog({
   isOpened,
@@ -39,24 +40,12 @@ export function DispatchEmailDialog({
   setIsOpened: (value: boolean) => void;
 }) {
   const [isPending, startTransition] = useTransition();
-  const [incidentData, setIncidentData] = useState<Incident | undefined>();
   const params = useParams();
-  const queryClient = useQueryClient();
 
-  const getIncident = async () => {
-    const data = await queryClient.getQueryData<Incident[]>(["incidents", ""]);
-    const incident = data?.find(
-      (d: Incident) => d.referenceNumber === params.referenceNumber,
-    );
-    setIncidentData(incident);
-  };
-
-  useEffect(() => {
-    if (params.referenceNumber) {
-      getIncident();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.referenceNumber]);
+  const { data: incidentData } = useQuery<Incident>({
+    queryKey: ["incident", params.referenceNumber],
+    queryFn: async () => await fetchData(`incidents/${params.referenceNumber}`),
+  });
 
   const formSchema = z.object({
     emails: z.string().min(5, {
@@ -83,8 +72,18 @@ export function DispatchEmailDialog({
     });
 
     startTransition(async () => {
-      await sendEmail(validatedEmails, incidentData);
+      const data = await sendEmail(validatedEmails, incidentData);
+
       setIsOpened(false);
+
+      if (data?.error) {
+        toast({
+          title: "Error",
+          description: "Email has not been sent. Please try again.",
+        });
+        return;
+      }
+
       toast({
         title: "Email sent",
         description: "Email has been sent successfully.",

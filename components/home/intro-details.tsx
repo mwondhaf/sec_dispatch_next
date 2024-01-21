@@ -21,7 +21,7 @@ const IntroDetails: React.FC<IntroDetailsProps> = (props) => {
     startTransition(() => {
       fetchSession();
     });
-  }, [session]);
+  }, []);
 
   if (!session?.user) return null;
 

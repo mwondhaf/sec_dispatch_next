@@ -112,7 +112,7 @@ const Page: React.FC<PageProps> = ({ params }) => {
               {incident.compilerEmail !== incident.editorEmail && (
                 <p className="text-xs">
                   <span>Edited By:</span> {incident.editor?.name} - ID:
-                  {incident.editor.idNumber}
+                  {incident.editor?.idNumber}
                 </p>
               )}
             </div>

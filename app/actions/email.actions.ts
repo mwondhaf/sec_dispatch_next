@@ -16,6 +16,12 @@ export const sendEmail = async (
   const { description, investigation, category, referenceNumber, compiler } =
     incident;
 
+  console.log({ incident });
+
+  const categoryName = category?.name || "Unknown";
+  const entityName = incident.compiler.UserProfile[0].entity.name || "Unknown";
+  const compilerName = compiler?.name || "Unknown";
+
   try {
     const data = await resend.emails.send({
       from: fromEmail,
@@ -25,13 +31,15 @@ export const sendEmail = async (
       // cc:[],
       react: DispatchEntryEmail({
         description,
-        category: category?.name,
-        entity: incident.compiler.UserProfile[0].entity.name,
+        category: categoryName,
+        entity: entityName,
         referenceNumber,
         investigation,
-        compiler: compiler?.name,
+        compiler: compilerName,
       }),
     });
+    console.log({ data });
+
     return { success: true, data };
   } catch (error) {
     console.log(error);
