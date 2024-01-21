@@ -5,6 +5,8 @@ import { z } from "zod";
 import { fetchData, postData, deleteData, patchData } from "../fetch-helper";
 import { User } from "@/typings";
 import * as bcrypt from "bcrypt";
+import { auth } from "@/auth";
+import { Session } from "next-auth/types";
 
 const personSchemaNoEntityIdAndUserEmail = personSchema.omit({
   entityId: true,
@@ -75,4 +77,9 @@ export const deleteUser = async (email: string) => {
 
     throw new Error("Something went wrong");
   }
+};
+
+export const userSession = async (): Promise<Session | null> => {
+  const authSession = await auth();
+  return authSession;
 };

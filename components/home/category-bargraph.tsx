@@ -27,13 +27,13 @@ const defaultDateRange: DateRange = {
 };
 
 const CategoryBarGraph: React.FC<CategoryBarGraphProps> = (props) => {
-  const { categories } = useCategoriesQuery();
+  const { categories, isLoading: categoriesLoading } = useCategoriesQuery();
 
   const [dateRange, setDateRange] = useState<DateRangePickerValue | undefined>(
     defaultDateRange,
   );
 
-  let { incidents } = useIncidentsQuery({
+  let { incidents, isLoading: incidentsLoading } = useIncidentsQuery({
     start_date: dateRange?.from
       ? new Date(dateRange?.from).toISOString()
       : new Date(startOfMonthDate).toISOString(),
@@ -64,7 +64,7 @@ const CategoryBarGraph: React.FC<CategoryBarGraphProps> = (props) => {
     <>
       <div className="mb-3 ">
         <div className="gap-2">
-          <div className="col-span-2">
+          <div className="col-span-2 pb-3">
             <h3 className="text-sm font-semibold">
               Categories Statistics - Top 10
             </h3>
@@ -91,7 +91,9 @@ const CategoryBarGraph: React.FC<CategoryBarGraphProps> = (props) => {
             <Bold>Count</Bold>
           </Text>
         </Flex>
-        <BarComponent data={graphData as []} className="mt-2" />
+        {!incidentsLoading && !categoriesLoading && (
+          <BarComponent data={graphData as []} className="mt-2" />
+        )}
       </Card>
     </>
   );

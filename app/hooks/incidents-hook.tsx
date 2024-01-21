@@ -119,7 +119,7 @@ export function useCategoriesQuery() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["incident-categories"],
+    queryKey: ["incident_categories"],
     queryFn: () => getAllIncidentCategories(),
   });
   return { categories, isLoading, error };

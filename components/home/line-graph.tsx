@@ -25,6 +25,7 @@ import {
   weeklyLineGraph,
 } from "@/lib/graph_data/line_graph";
 import { Button } from "../ui/button";
+import { Incident, IncidentType } from "@/typings";
 
 ChartJS.register(
   CategoryScale,
@@ -51,14 +52,17 @@ export const options = {
   },
 };
 
-interface LineGraphProps {}
+interface LineGraphProps {
+  incidents: Incident[];
+  category_types: IncidentType[];
+}
 
 const periods = ["Daily", "Weekly", "Monthly"];
 
-const LineGraph: React.FC<LineGraphProps> = (props) => {
+const LineGraph: React.FC<LineGraphProps> = ({ incidents, category_types }) => {
   const [activePeriod, setActivePeriod] = React.useState("Daily");
-  const { incidents } = useIncidentsQuery();
-  const { category_types } = useCategoryTypesQuery();
+  // const { incidents } = useIncidentsQuery();
+  // const { category_types } = useCategoryTypesQuery();
 
   if (!incidents || !category_types) return null;
 
@@ -104,7 +108,11 @@ const LineGraph: React.FC<LineGraphProps> = (props) => {
             ))}
           </div>
         </div>
-        <Line options={options} data={data} {...props} />
+        <Line
+          options={options}
+          data={data}
+          {...{ incidents, category_types }}
+        />
       </Card>
     </div>
   );
