@@ -26,7 +26,7 @@ export const sendEmail = async (
     const data = await resend.emails.send({
       from: fromEmail,
       to: validatedEmails,
-      subject: `${incident.compiler.UserProfile[0].entity.code} - ${referenceNumber} - ${category?.name}`,
+      subject: `${incident.compiler.UserProfile[0].entity.code} - ${category?.name}`,
       // text: "Hello from SendGrid",
       // cc:[],
       react: DispatchEntryEmail({
@@ -38,7 +38,6 @@ export const sendEmail = async (
         compiler: compilerName,
       }),
     });
-    console.log({ data });
 
     return { success: true, data };
   } catch (error) {

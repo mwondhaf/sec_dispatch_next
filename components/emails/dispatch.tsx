@@ -40,43 +40,8 @@ export const DispatchEntryEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Section style={box}>
-            {/* <Img
-            src={`${baseUrl}/static/stripe-logo.png`}
-            width="49"
-            height="21"
-            alt="Stripe"
-          /> */}
-            {/* <Hr style={hr} /> */}
             <Text style={paragraph}>{description}</Text>
-            {/* <Button style={button} href="https://dashboard.stripe.com/login">
-            View your Stripe Dashboard
-          </Button> */}
             <Hr style={hr} />
-            {/* <Text style={paragraph}>
-            If you haven't finished your integration, you might find our{" "}
-            <Link style={anchor} href="https://stripe.com/docs">
-              docs
-            </Link>{" "}
-            handy.
-          </Text>
-          <Text style={paragraph}>
-            Once you're ready to start accepting payments, you'll just need to
-            use your live{" "}
-            <Link
-              style={anchor}
-              href="https://dashboard.stripe.com/login?redirect=%2Fapikeys"
-            >
-              API keys
-            </Link>{" "}
-            instead of your test API keys. Your account can simultaneously be
-            used for both test and live requests, so you can continue testing
-            while accepting live payments. Check out our{" "}
-            <Link style={anchor} href="https://stripe.com/docs/dashboard">
-              tutorial about account basics
-            </Link>
-            .
-          </Text> */}
-
             <Text style={paragraph}>{investigation}</Text>
             <Text style={paragraph}>-{compiler}</Text>
             <Hr style={hr} />

@@ -2,6 +2,7 @@
 import { fetchData } from "@/app/actions/fetch-helper";
 import { getAllDepartments } from "@/app/actions/settings/department-actions";
 import { getAllIncidentCategories } from "@/app/actions/settings/incident-category-actions";
+import LoadingComponent from "@/components/LoadingComponent";
 import { countries } from "@/lib/countries";
 import { Incident } from "@/typings";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -51,11 +52,11 @@ const Page: React.FC<PageProps> = ({ params }) => {
   }
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <LoadingComponent />;
   }
 
   if (!incident) {
-    return <div className="p-4">Loading...</div>;
+    return <LoadingComponent />;
   }
 
   return (

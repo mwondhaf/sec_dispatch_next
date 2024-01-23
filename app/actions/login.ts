@@ -1,4 +1,6 @@
-import { signIn } from "@/auth";
+"use server";
+
+import { signIn, signOut } from "@/auth";
 import { DEFAULT_REDIRECT_URL } from "@/routes";
 import { AuthError } from "next-auth";
 
@@ -27,4 +29,8 @@ export const login = async ({
 
     throw error;
   }
+};
+
+export const logOut = async () => {
+  await signOut();
 };
