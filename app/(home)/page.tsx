@@ -11,6 +11,7 @@ import {
 } from "../hooks/incidents-hook";
 import IntroDetails from "@/components/home/intro-details";
 import LoadingComponent from "@/components/LoadingComponent";
+import IncidentTypeDonut from "@/components/home/donut_graph";
 
 const HomePage = () => {
   const { categories, isLoading: categoriesLoading } = useCategoriesQuery();
@@ -33,8 +34,15 @@ const HomePage = () => {
             <DaySummaryIncidents />
           </Card>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 space-y-5">
           <CategoryBarGraph />
+          {/* <Card> */}
+          <div className="grid grid-cols-2 gap-3">
+            {category_types.map((cat_type) => (
+              <IncidentTypeDonut {...{ cat_type }} />
+            ))}
+          </div>
+          {/* </Card> */}
         </div>
       </div>
     </div>

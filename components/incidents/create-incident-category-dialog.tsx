@@ -66,11 +66,11 @@ export function CreateIncidentCategoryDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Create Incident Category</Button>
+        <Button>Create Occurrence Category</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create Incident Category</DialogTitle>
+          <DialogTitle>Create Occurrence Category</DialogTitle>
           <DialogDescription>
             Enter the details and click Create Category when you&apos;re done.
           </DialogDescription>
@@ -96,7 +96,7 @@ export function CreateIncidentCategoryDialog({
               name="incidentTypeId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Incident Type</FormLabel>
+                  <FormLabel>Occurrence Type</FormLabel>
                   <Select onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger>

@@ -54,11 +54,11 @@ export function CreateIncidentTypeDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Create Incident Type</Button>
+        <Button>Create Occurrence Type</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create Incident Type</DialogTitle>
+          <DialogTitle>Create Occurrence Type</DialogTitle>
           <DialogDescription>
             Enter the details and click Create Type when you&apos;re done.
           </DialogDescription>

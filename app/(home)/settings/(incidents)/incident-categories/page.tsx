@@ -15,7 +15,7 @@ const IncidentCategories = async () => {
     <div className="space-y-5">
       <div className="items center flex justify-between">
         <h5 className="text-md font-semibold text-gray-500">
-          Incident Categories
+          Occurrence Categories
         </h5>
         <CreateIncidentCategoryDialog {...{ incidentTypes }} />
       </div>

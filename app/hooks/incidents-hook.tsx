@@ -63,8 +63,8 @@ export function useCreateIncidentMutation() {
 
       // toaster
       toast({
-        title: "Incident Created",
-        description: "Incident created successfully",
+        title: "Occurrence Created",
+        description: "Occurrence created successfully",
       });
     },
     onError: (error) => {
@@ -90,8 +90,8 @@ export function useUpdateIncidentMutation() {
       });
       // toaster
       toast({
-        title: "Incident Updated",
-        description: "Incident updated successfully",
+        title: "Occurrence Updated",
+        description: "Occurrence updated successfully",
       });
     },
     onError: (error) => {

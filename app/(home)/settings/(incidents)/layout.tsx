@@ -9,13 +9,13 @@ const OccurrenceLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="min-h-[80vh] space-y-5 border-r px-2">
           <Link href="/settings/incident-types" className="">
             <div className="flex items-center justify-between py-5">
-              <div className="text-sm text-gray-500">Incident Types</div>
+              <div className="text-sm text-gray-500">Occurrence Types</div>
               <ChevronRight className="h-4 w-4 text-gray-500" />
             </div>
           </Link>
           <Link href="/settings/incident-categories" className="">
             <div className="flex items-center justify-between py-5">
-              <div className="text-sm text-gray-500">Incident Categories</div>
+              <div className="text-sm text-gray-500">Occurrence Categories</div>
               <ChevronRight className="h-4 w-4 text-gray-500" />
             </div>
           </Link>

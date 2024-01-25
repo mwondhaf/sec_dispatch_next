@@ -325,7 +325,7 @@ function IncidentCreateForm({
           </div>
         </div>
 
-        <Button type="submit">Create Incident</Button>
+        <Button type="submit">Create Occurrence</Button>
       </form>
     </Form>
   );

@@ -68,7 +68,7 @@ const LeftSideBar = () => {
           <ClipboardList />
         </div>
         <div className="">
-          <h5 className="text-sm ">Incident Settings</h5>
+          <h5 className="text-sm ">Occurrence Settings</h5>
           <p className="text-xs">Manage and customize company details</p>
         </div>
       </Link>

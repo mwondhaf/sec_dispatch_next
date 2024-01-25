@@ -10,7 +10,9 @@ const IncidentTypes = async () => {
   return (
     <div className="space-y-5">
       <div className="items center flex justify-between">
-        <h5 className="text-md font-semibold text-gray-500">Incident Types</h5>
+        <h5 className="text-md font-semibold text-gray-500">
+          Occurrence Types
+        </h5>
 
         <CreateIncidentTypeDialog />
       </div>
