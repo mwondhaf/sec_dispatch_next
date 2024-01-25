@@ -39,7 +39,7 @@ const HomePage = () => {
           {/* <Card> */}
           <div className="grid grid-cols-2 gap-3">
             {category_types.map((cat_type) => (
-              <IncidentTypeDonut {...{ cat_type }} />
+              <IncidentTypeDonut key={cat_type.id} {...{ cat_type }} />
             ))}
           </div>
           {/* </Card> */}
