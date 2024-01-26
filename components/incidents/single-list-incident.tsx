@@ -26,7 +26,7 @@ const SingleListIncident: React.FC<SingleListIncidentProps> = ({
           incident.severity === "Medium"
             ? "border-yellow-300"
             : incident.severity === "High" && "border-red-100",
-          "justify-between gap-2 rounded-lg border p-3 hover:bg-accent",
+          "justify-between gap-2 rounded-lg border p-3 duration-150 hover:scale-105 hover:bg-accent",
         ),
       )}
     >
