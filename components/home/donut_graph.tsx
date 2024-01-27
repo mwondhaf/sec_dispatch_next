@@ -64,7 +64,7 @@ const IncidentTypeDonut: FC<IncidentTypeDonutProps> = ({ cat_type }) => {
         data={graphData as []}
         category="value"
         index="name"
-        colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
+        colors={["slate", "violet", "indigo", "rose", "cyan", "amber", "red"]}
       />
     </Card>
   );
