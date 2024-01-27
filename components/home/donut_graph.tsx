@@ -1,4 +1,7 @@
-import { useCategoriesQuery } from "@/app/hooks/incidents-hook";
+import {
+  useCategoriesQuery,
+  useIncidentsQuery,
+} from "@/app/hooks/incidents-hook";
 import { IncidentType } from "@/typings";
 import { Card, DonutChart, Title } from "@tremor/react";
 import { FC } from "react";
@@ -36,15 +39,16 @@ interface IncidentTypeDonutProps {
 
 const IncidentTypeDonut: FC<IncidentTypeDonutProps> = ({ cat_type }) => {
   const { categories, isLoading: categoriesLoading } = useCategoriesQuery();
+  const { incidents, isLoading: incidentsLoading } = useIncidentsQuery();
 
   const filteredByType = categories?.filter(
     (category) => category.incidentTypeId === cat_type.id,
   );
 
-  // array reduce to get the count of each category
-  const graphData = categories?.map((category) => {
-    const count = filteredByType?.filter(
-      (incident) => incident.name === category.name,
+  // find all incidents by each category and count them and group them by highest count and limit to 10
+  const graphData = filteredByType?.map((category) => {
+    const count = incidents?.filter(
+      (incident) => incident.category.name === category.name,
     ).length;
     return {
       name: category.name,
@@ -60,7 +64,6 @@ const IncidentTypeDonut: FC<IncidentTypeDonutProps> = ({ cat_type }) => {
         data={graphData as []}
         category="value"
         index="name"
-        // valueFormatter={valueFormatter}
         colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
       />
     </Card>
