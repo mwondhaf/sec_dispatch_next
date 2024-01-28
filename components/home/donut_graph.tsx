@@ -6,33 +6,6 @@ import { IncidentType } from "@/typings";
 import { Card, DonutChart, Title } from "@tremor/react";
 import { FC } from "react";
 
-const cities = [
-  {
-    name: "New York",
-    sales: 9800,
-  },
-  {
-    name: "London",
-    sales: 4567,
-  },
-  {
-    name: "Hong Kong",
-    sales: 3908,
-  },
-  {
-    name: "San Francisco",
-    sales: 2400,
-  },
-  {
-    name: "Singapore",
-    sales: 1908,
-  },
-  {
-    name: "Zurich",
-    sales: 1398,
-  },
-];
-
 interface IncidentTypeDonutProps {
   cat_type: IncidentType;
 }
@@ -64,7 +37,30 @@ const IncidentTypeDonut: FC<IncidentTypeDonutProps> = ({ cat_type }) => {
         data={graphData as []}
         category="value"
         index="name"
-        colors={["slate", "violet", "indigo", "rose", "cyan", "amber", "red"]}
+        colors={[
+          "slate",
+          "violet",
+          "gray",
+          "indigo",
+          "rose",
+          "cyan",
+          "amber",
+          "red",
+          "orange",
+          "yellow",
+          "lime",
+          "green",
+          "zinc",
+          "neutral",
+          "stone",
+          "emerald",
+          "teal",
+          "sky",
+          "blue",
+          "purple",
+          "fuchsia",
+          "pink",
+        ]}
       />
     </Card>
   );
